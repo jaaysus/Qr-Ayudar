@@ -1,0 +1,529 @@
+#customNamesGroup {
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.custom-names-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2a44;
+    margin-bottom: 6px;
+}
+* {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* ANIMATION FOR QR GENERATION */
+@keyframes qrEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.qr-generating {
+    animation: qrEntrance 0.5s ease-out;
+}
+
+@page {
+    size: A4;
+    margin: 12mm;
+}
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #eef2f7, #dfe9f3);
+    padding: 10px;
+}
+
+
+.app-card {
+    height: auto;
+    transition: height 0.6s ease;
+    overflow: hidden;
+    max-width: 95vw;
+    width: 100%;
+    min-height: auto;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    transition: all 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .app-card {
+        padding: 12px;
+        min-height: auto;
+    }
+}
+
+/* TITLE */
+.title {
+    text-align: center;
+    margin: 5px 0 15px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1f2a44;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 18px;
+        margin: 5px 0 12px;
+    }
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    flex-direction: row;
+}
+
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+.main.open .left {
+    flex: 1;
+}
+
+.main.open .right {
+    flex: 1;
+    width: auto;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .main.open .right {
+        flex: 1;
+        width: 100%;
+    }
+}
+
+/* LEFT */
+.left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: flex 0.6s ease;
+    min-width: 0;
+}
+
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    min-height: 0;
+}
+
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-height: 0;
+}
+
+.input-group label {
+    margin-bottom: 2px;
+}
+
+#dataInputGroup {
+    margin-bottom: 12px;
+}
+
+#customNamesGroup {
+    margin-top: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+#qrNames {
+    margin-top: 6px;
+    min-height: 100px;
+    width: 100%;
+    resize: vertical;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-height: 0;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1f2a44;
+}
+
+textarea {
+    flex: 1;
+    resize: none;
+    padding: 12px;
+    border: 1px solid #d7dce3;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    background: white;
+    min-height: 120px;
+}
+
+@media (max-width: 768px) {
+    textarea {
+        min-height: 100px;
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+textarea:focus {
+    border-color: #2d6cdf;
+    box-shadow: 0 0 0 3px rgba(45,108,223,0.15);
+}
+
+button {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    background: linear-gradient(135deg, #2d6cdf, #1f56c2);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s ease;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    button {
+        padding: 10px;
+        font-size: 13px;
+        margin-top: 8px;
+    }
+}
+
+button:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* RIGHT */
+.right {
+    flex: 0;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
+    min-width: 0;
+    min-height: 0;
+}
+
+@media (max-width: 768px) {
+    .right {
+        max-height: 60vh;
+    }
+    
+    .main.open .right {
+        width: 100%;
+    }
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+}
+
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+tbody {
+    display: block;
+    max-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #c9c9c9 #f1f1f1;
+}
+
+tbody::-webkit-scrollbar {
+    width: 10px;
+}
+
+tbody::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+tbody::-webkit-scrollbar-thumb {
+    background: #c9c9c9;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+tbody::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    table-layout: fixed;
+}
+
+thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* CELLS */
+th, td {
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    word-break: break-word;
+}
+
+@media (max-width: 768px) {
+    th, td {
+        padding: 8px 6px;
+        font-size: 11px;
+    }
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #f7f9fc;
+    font-weight: 700;
+    z-index: 1;
+}
+
+/* CONTROLS */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        margin-top: 10px;
+    }
+}
+
+.group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 1px solid #e6eaf0;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .group {
+        width: 100%;
+        padding: 8px;
+    }
+}
+
+.group input[type="text"] {
+    width: 90px;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .group input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        flex: 1;
+    }
+}
+
+.group input[type="text"]:focus {
+    border-color: #2d6cdf;
+}
+
+.count {
+    font-weight: 700;
+    color: #1f2a44;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .count {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* BUTTON AREA */
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-direction: row;
+}
+
+@media (max-width: 768px) {
+    .actions {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 8px;
+    }
+}
+
+.actions button {
+    flex: 1;
+}
+
+/* QR BUTTON */
+#qrBtn {
+    display: none;
+    background: #111;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    #qrBtn {
+        margin-top: 8px;
+    }
+}
+
+/* PRINT UI */
+@media print {
+    /* Hide everything except print area */
+    body * {
+        visibility: hidden;
+    }
+
+    #pdfSheet, #pdfSheet * {
+        visibility: visible;
+    }
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .app-card {
+        box-shadow: none;
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+
+    textarea, .controls, button, .actions, .input-container {
+        display: none !important;
+    }
+
+    .right {
+        overflow: visible;
+    }
+
+    /* Keep the PDF grid fixed for print so viewport width never changes the row count. */
+    #pdfSheet {
+        position: absolute;
+        left: 12mm;
+        top: 12mm;
+        width: calc(210mm - 24mm);
+        min-height: calc(297mm - 24mm);
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10mm;
+        padding: 0;
+        align-content: start;
+    }
+
+    .pdf-item {
+        text-align: center;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .pdf-name {
+        font-size: 10px;
+        margin-top: 4px;
+    }
+}
+
+/* hidden PDF container */
+#pdfSheet {
+    display: none;
+}

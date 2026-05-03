@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<meta charset="UTF-8">
+<title>Name-QR Extractor</title>
+</head>
+<body>
+
+<div class="app-card">
+
+    <h2 class="title">QR Ayudar</h2>
+
+    <div class="main">
+        <div class="left">
+            <div class="input-container">
+                <div class="input-group" id="dataInputGroup">
+                    <label for="input">Data Input</label>
+                    <textarea id="input" placeholder="Paste your text here..."></textarea>
+                </div>
+            </div>
+
+            <div id="customNamesGroup">
+                <label for="customNamesToggle" class="custom-names-label">
+                    <input type="checkbox" id="customNamesToggle"> Custom names
+                </label>
+                <textarea id="qrNames" placeholder="Enter custom names, one per line..." style="display:none;"></textarea>
+            </div>
+
+            <div class="controls">
+                <div class="group">
+                    <label>Prefix</label>
+                    <input type="text" id="prefixValue" placeholder="e.g. OK">
+                </div>
+                <div class="group">
+                    <label>Suffix</label>
+                    <input type="text" id="suffixValue" placeholder="e.g. -X">
+                </div>
+                <div class="count" id="count">0 pairs</div>
+            </div>
+
+            <div class="actions">
+                <button onclick="processText()">Process</button>
+                <button onclick="exportPDF()">Export PDF (A4)</button>
+            </div>
+        </div>
+
+        <div class="right">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>QR Value</th>
+                        <th>QR Code</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+
+            <button id="qrBtn">Generate QR Codes</button>
+        </div>
+    </div>
+</div>
+<div id="pdfSheet"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
