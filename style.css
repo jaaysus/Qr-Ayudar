@@ -68,9 +68,17 @@ body {
 }
 
 @media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+        padding: 0;
+    }
+
     .app-card {
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
         padding: 12px;
-        min-height: auto;
     }
 }
 
@@ -276,7 +284,7 @@ button:active {
 
 @media (max-width: 768px) {
     .right {
-        max-height: 60vh;
+        max-height: none;
     }
     
     .main.open .right {
@@ -457,6 +465,10 @@ th {
         flex-direction: column;
         gap: 8px;
         margin-top: 8px;
+    }
+
+    .actions button {
+        width: 100%;
     }
 }
 
