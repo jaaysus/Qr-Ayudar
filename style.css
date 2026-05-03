@@ -245,6 +245,17 @@ button:active {
     transform: translateY(0);
 }
 
+#exportBtn.ready {
+    background: linear-gradient(135deg, #2f9e44, #237a33);
+}
+
+#exportBtn .btn-icon {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 15px;
+    line-height: 1;
+}
+
 /* RIGHT */
 .right {
     flex: 0;

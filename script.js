@@ -8,6 +8,41 @@ function resizeApp() {
     });
 }
 
+function scrollRowIntoView(row) {
+    const scrollContainer = document.querySelector(".right tbody");
+    if (!scrollContainer || !row) return;
+
+    const rowTop = row.offsetTop;
+    const rowBottom = rowTop + row.offsetHeight;
+    const viewTop = scrollContainer.scrollTop;
+    const viewBottom = viewTop + scrollContainer.clientHeight;
+
+    if (rowTop < viewTop) {
+        scrollContainer.scrollTo({
+            top: rowTop,
+            behavior: "smooth"
+        });
+        return;
+    }
+
+    if (rowBottom > viewBottom) {
+        scrollContainer.scrollTo({
+            top: rowBottom - scrollContainer.clientHeight,
+            behavior: "smooth"
+        });
+    }
+}
+
+function setExportButtonReady(isReady) {
+    const exportBtn = document.getElementById("exportBtn");
+    if (!exportBtn) return;
+
+    exportBtn.classList.toggle("ready", isReady);
+    exportBtn.innerHTML = isReady
+        ? '<span class="btn-icon" aria-hidden="true">&#8681;</span> Export PDF (A4)'
+        : "Export PDF (A4)";
+}
+
 /* =========================
    PROCESS TEXT + OPEN PANEL
 ========================= */
@@ -50,6 +85,7 @@ function processText() {
     const suffix = document.getElementById("suffixValue").value || "";
 
     const count = Math.min(names.length, qrs.length);
+    setExportButtonReady(false);
 
     const tbody = document.getElementById("tableBody");
     tbody.innerHTML = "";
@@ -86,6 +122,7 @@ document.getElementById("customNamesToggle").addEventListener("change", function
 ========================= */
 document.getElementById("qrBtn").addEventListener("click", function () {
     const rows = document.querySelectorAll("#tableBody tr");
+    setExportButtonReady(false);
     
     // Disable button while generating
     this.disabled = true;
@@ -113,11 +150,13 @@ document.getElementById("qrBtn").addEventListener("click", function () {
             
             container.appendChild(wrapper);
             resizeApp();
+            scrollRowIntoView(row);
             
             // Re-enable button after last QR code
             if (i === rows.length - 1) {
                 this.disabled = false;
                 this.textContent = originalText;
+                setExportButtonReady(true);
             }
         }, i * 150); // 150ms delay between each QR code
     });
